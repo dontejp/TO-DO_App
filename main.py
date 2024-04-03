@@ -2,6 +2,7 @@ todos = []
 
 while True:
     user_action = input("Type add , show or exit: ")
+    user_action = user_action.strip()
 
     match user_action:
         case 'add':
@@ -9,7 +10,7 @@ while True:
             todos.append(todo)
         case 'show':
             for task in todos:
-                print(todos)
+                print(task)
         case 'exit':
             break
 print ("Program exited!")
