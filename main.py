@@ -8,7 +8,8 @@ while True:
             todo = input("Enter a todo: ")
             todos.append(todo)
         case 'show':
-            print(todos)
+            for task in todos:
+                print(todos)
         case 'exit':
             break
 print ("Program exited!")
