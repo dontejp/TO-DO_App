@@ -1,0 +1,4 @@
+clean
+prepare
+play
+fix

@@ -1,13 +1,20 @@
-todos = []
-
 while True:
     user_action = input("Type add , complete, show, edit or exit: ")
     user_action = user_action.strip()
 
     match user_action:
         case 'add':
-            todo = input("Enter a todo: ")
-            todos.append(todo)
+            todo = input("Enter a todo: ") + "\n"                                           #adding \n to input allows .txt file to
+
+            file = open('todos.txt','r')                                                    #because writing destroys file we must save it in a list first
+            todos = file.readlines()                                                        #type(file.readlines()) returns list
+            file.close()                                                                    #always close file after opening
+
+            todos.append(todo)                                                              #adds string to a list
+
+            file = open('todos.txt', 'w')                                                   #opens .txt file ... open( 'path to file','w'|'r' )... writing destroys file and creates a new one
+            file.writelines(todos)                                                          #writes the list to the txt file
+            file.close()
         case 'show':
             for index, task in enumerate(todos):
                 print( f"{index + 1}-{task}")
@@ -18,7 +25,7 @@ while True:
             todos[number] = new_todo
         case 'complete':
             number = int(input("Enter the number of the taskw you'd like to remove: "))
-            todos.pop(number-1)
+            todos.pop(number - 1)
 
         case 'exit':
             break
