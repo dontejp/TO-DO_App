@@ -6,21 +6,18 @@ while True:
         case 'add':
             todo = input("Enter a todo: ") + "\n"                                           #adding \n to input allows .txt file to
 
-            file = open('todos.txt','r')                                                    #because writing destroys file we must save it in a list first
-            todos = file.readlines()                                                        #type(file.readlines()) returns list
-            file.close()                                                                    #always close file after opening
+            with open('todos.txt','r') as file:                                             #with context manager allows us to open and close file without
+                todos = file.readlines()                                                    #having to explicitly type it
 
             todos.append(todo)                                                              #adds string to a list
 
-            file = open('todos.txt', 'w')                                                   #opens .txt file ... open( 'path to file','w'|'r' )... writing destroys file and creates a new one
-            file.writelines(todos)                                                          #writes the list to the txt file
-            file.close()
+            with open('todos.txt','w') as file:
+                file.writelines(todos)
+
         case 'show':
-            file = open('todos.txt','r')
-            todos = file.readlines()
-            file.close()
 
-
+            with open('todos.txt', 'r') as file:
+                todos = file.readlines()
 
             new_todos = [item.strip('\n') for item in todos]                                #list comprehension makes the lines underneath quicker
 
