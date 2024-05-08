@@ -16,8 +16,23 @@ while True:
             file.writelines(todos)                                                          #writes the list to the txt file
             file.close()
         case 'show':
-            for index, task in enumerate(todos):
-                print( f"{index + 1}-{task}")
+            file = open('todos.txt','r')
+            todos = file.readlines()
+            file.close()
+
+
+
+            new_todos = [item.strip('\n') for item in todos]                                #list comprehension makes the lines underneath quicker
+
+            #new_todos = []
+
+            #for item in todos:                                                              we added a new line to ensure the txt file had separations
+            #    new_item = item.strip('\n')                                                 removes the new line character from the todos list
+            #    new_todos.append(new_item)
+
+            for index, task in enumerate(new_todos):
+                rows = f"{index + 1}-{task}"
+                print(rows)
         case 'edit':
             number = int(input("Enter the number of the todo item you want to edit: "))
             number = number - 1
@@ -26,6 +41,10 @@ while True:
         case 'complete':
             number = int(input("Enter the number of the taskw you'd like to remove: "))
             todos.pop(number - 1)
+
+            file = open("todos.txt", 'w')
+            file.writelines(todos)
+            file.close()
 
         case 'exit':
             break
