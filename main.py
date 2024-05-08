@@ -47,7 +47,7 @@ while True:
                 file.writelines(todos)
 
         case 'complete':
-            number = int(input("Enter the number of the taskw you'd like to remove: "))
+            number = int(input("Enter the number of the task you'd like to remove: "))
 
             with open("todos.txt", "r") as file:
                 todos = file.readlines()
